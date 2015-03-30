@@ -1,11 +1,9 @@
 package net.evdokimov.eshop.dao.impl.jdbc;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import net.evdokimov.eshop.dao.UserDao;
 import net.evdokimov.eshop.dao.exception.DaoBusinessException;
 import net.evdokimov.eshop.dao.exception.DaoSystemException;
 import net.evdokimov.eshop.dao.exception.NoSuchEntityException;
-import net.evdokimov.eshop.entity.Product;
 import net.evdokimov.eshop.entity.User;
 
 import javax.sql.DataSource;
@@ -16,8 +14,8 @@ public class UserDaoJdbcExternalTxImpl implements UserDao {
 
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
-    private static final String INSERT_SQL = "INSERT INTO users (login, password) VALUES (?, ?);";
-    private static final String SELECT_BY_ID_AND_PASSWORD_SQL = "SELECT id, login, password FROM users WHERE login=? AND password=?;";
+    private static final String INSERT_SQL = "INSERT INTO users (login, password, email) VALUES (?, ?, ?);";
+    private static final String SELECT_BY_ID_AND_PASSWORD_SQL = "SELECT id, login, password, email FROM users WHERE login=? AND password=?;";
 
 
     static {
@@ -42,12 +40,10 @@ public class UserDaoJdbcExternalTxImpl implements UserDao {
             prepareStatement.setString(1, login);
             prepareStatement.setString(2, password);
             rs = prepareStatement.executeQuery();
-            if (!rs.next()) {
-                throw new NoSuchEntityException("No users with login = " + login);
+            if (rs.next()) {
+                return new User(rs.getInt("id"), rs.getString("login"), rs.getString("password"), rs.getString("email"));
             } else {
-                do{
-                    return new User(rs.getInt("id"), rs.getString("login"), rs.getString("password"));
-                } while (rs.next());
+                throw new NoSuchEntityException("No users with login = " + login);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,10 +64,11 @@ public class UserDaoJdbcExternalTxImpl implements UserDao {
             prepareStatement = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
             prepareStatement.setString(1, user.getLogin());
             prepareStatement.setString(2, user.getPassword());
+            prepareStatement.setString(3, user.getEmail());
             try {
                 prepareStatement.executeUpdate();
             } catch (SQLException e) {
-                throw new DaoBusinessException("That login is already exist", e);
+                throw new DaoBusinessException("That login or email is already exist", e);
             }
             rs = prepareStatement.getGeneratedKeys();
             rs.next();
