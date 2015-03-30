@@ -7,15 +7,15 @@
                 <c:if test="${not empty loginOrEmailExist}">
                     <br/>Such login or e-mail already exist, please input another!
                     <br/>
-                    <br><a href="/eshop/productAll.do">all products page</a>
+                    <br><a href="/productAll.do">all products page</a>
                 </c:if>
                 <c:if test="${not empty loginIncorrect}">
                     <br/> Login or password are incorrect, please input another!
-                    <br><a href="/eshop/productAll.do">all products page</a>
+                    <br><a href="/productAll.do">all products page</a>
                 </c:if>
                 <br/>
             <br/>Please input login and password:</b>
-            <form action="/eshop/userRegistration.do" method="post">
+            <form action="/userRegistration.do" method="post">
                 <br/>Username  :<input type="text" name="login" />
                 <br/>Password  :<input type="password" name="password" />
                 <br/>
@@ -28,7 +28,7 @@
 
         <c:if test="${not empty user}">
             <br/>Registration has been successful! Your login is ${user.login}
-            <br/> You may go to <a href="/eshop/productAll.do">ALL PRODUCTS PAGE</a>
+            <br/> You may go to <a href="/productAll.do">ALL PRODUCTS PAGE</a>
         </c:if>
 
     </body>

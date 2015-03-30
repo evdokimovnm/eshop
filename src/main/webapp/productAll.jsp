@@ -3,12 +3,12 @@
 <html>
     <body>
         <c:if test="${empty user}">
-            <br><a href="/eshop/login.jsp?ref=productAll.do">Login</a>
-            <br><a href="/eshop/registration.jsp">Registration</a>
+            <br><a href="/login.jsp?ref=productAll.do">Login</a>
+            <br><a href="/registration.jsp">Registration</a>
         </c:if>
         <c:if test="${not empty user}">
             <br/>You are ${user.login}!
-            <br><a href="/eshop/userLogout.do?ref=productAll.do">Logout</a>
+            <br><a href="/userLogout.do?ref=productAll.do">Logout</a>
         </c:if>
         <hr/>
         <br/>
@@ -17,9 +17,9 @@
         <ul>
             <c:forEach var="productList" items="${productList}">
                 <li>
-                    <a href="/eshop/product.do?id=${productList.id}">${productList.name}</a>
+                    <a href="/product.do?id=${productList.id}">${productList.name}</a>
                     <%if (session.getAttribute("manager") != null) { %>
-                    <a href="/eshop/productRemove.do?id=${productList.id}">Remove</a>
+                    <a href="/productRemove.do?id=${productList.id}">Remove</a>
                     <%}%>
                 </li>
             </c:forEach>
@@ -27,7 +27,7 @@
 
         <%if (session.getAttribute("manager") != null) { %>
         <b>Add new product:</b>
-        <form action="/eshop/productInsertNew.do" method="post">
+        <form action="/productInsertNew.do" method="post">
             <br/>Product name:<input type="text" name="productName">
             <br/><input type="submit" value="Add">
         </form>
