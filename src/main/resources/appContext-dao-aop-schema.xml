@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+               http://www.springframework.org/schema/beans/spring-beans.xsd
+               http://www.springframework.org/schema/context
+               http://www.springframework.org/schema/context/spring-context.xsd
+               http://www.springframework.org/schema/aop
+               http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+
+    <bean id="aspect-profiler" class="net.evdokimov.eshop.aspect.SimpleProfiler"/>
+    <bean id="aspect-logger" class="net.evdokimov.eshop.aspect.SimpleLogger"/>
+    <bean id="aspect-exception-logger" class="net.evdokimov.eshop.aspect.SimpleExceptionLogger"/>
+    <bean id="aspect-cache" class="net.evdokimov.eshop.aspect.SimpleCache"/>
+
+    <!--<aop:config>
+        <aop:aspect ref="aspect-profiler">
+            &lt;!&ndash;условие выборки&ndash;&gt;
+            <aop:around pointcut-ref="selectById"
+                        method="profile"/>
+        </aop:aspect>
+
+        <aop:aspect ref="aspect-logger">
+            <aop:pointcut id="any-dao-methods"
+                          expression="execution(* net.evdokimov.eshop.dao.ProductDao.* (..))"/>
+            <aop:around pointcut-ref="any-dao-methods"
+                        method="log"/>
+        </aop:aspect>
+
+        <aop:aspect ref="aspect-exception-logger">
+            <aop:pointcut id="any-public-methods"
+                          expression="execution(public * * (..))"/>
+            <aop:after-throwing pointcut-ref="any-public-methods"
+                                method="logException" throwing="t"/>
+        </aop:aspect>
+
+        <aop:aspect ref="aspect-cache">
+            <aop:pointcut id="selectById"
+                          expression="execution(* net.evdokimov.eshop.dao.ProductDao.selectById(int)) and args(id))"/>
+            <aop:around pointcut-ref="selectById"
+                        method="logCache"/>
+        </aop:aspect>
+    </aop:config>-->
+
+
+    <!--PoolDataSourceHolder-->
+    <bean id="poolDataSource" class="net.evdokimov.eshop.dao.impl.jdbc.tx.PoolDataSourceHolder" scope="singleton"/>
+
+
+    <!--Transaction Manager-->
+    <bean id="txManager" class="net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManagerImpl" scope="singleton">
+        <property name="dataSource" ref="poolDataSource"/>
+    </bean>
+
+    <!--ProductDao-->
+    <bean id="productDao" class="net.evdokimov.eshop.dao.impl.jdbc.ProductDaoJdbcExternalTxImpl" scope="singleton">
+        <property name="dataSource" ref="txManager"/>
+    </bean>
+
+    <!--UserDao-->
+    <bean id="userDao" class="net.evdokimov.eshop.dao.impl.jdbc.UserDaoJdbcExternalTxImpl" scope="singleton">
+        <property name="dataSource" ref="txManager"/>
+    </bean>
+</beans>
+
