@@ -29,6 +29,12 @@
         <b>Add new product:</b>
         <form action="/productInsertNew.do" method="post">
             <br/>Product name:<input type="text" name="productName">
+            <br/>Product type:
+                <select name="productType" size="1">
+                    <option value="Food">Food</option>
+                    <option value="Technique">Technique</option>
+                    <option value="Animal">Animal</option>
+                </select>
             <br/><input type="submit" value="Add">
         </form>
         <%}%>

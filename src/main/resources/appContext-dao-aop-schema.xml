@@ -64,5 +64,11 @@
     <bean id="userDao" class="net.evdokimov.eshop.dao.impl.jdbc.UserDaoJdbcExternalTxImpl" scope="singleton">
         <property name="dataSource" ref="txManager"/>
     </bean>
+
+    <!--ProductTypeDao-->
+    <bean id="productTypeDao" class="net.evdokimov.eshop.dao.impl.jdbc.ProductTypeDaoJdbcExternalTxImpl" scope="singleton">
+        <property name="dataSource" ref="txManager"/>
+    </bean>
+
 </beans>
 

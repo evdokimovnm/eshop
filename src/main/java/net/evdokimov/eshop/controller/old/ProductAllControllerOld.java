@@ -1,3 +1,4 @@
+/*
 package net.evdokimov.eshop.controller.old;
 
 import net.evdokimov.eshop.dao.ProductDao;
@@ -13,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+*/
 /**
  * Created by Nikita on 06.03.2015.
- */
+ *//*
+
 public class ProductAllControllerOld extends HttpServlet {
     public static final String ATTRIBUTE_MODEL_TO_VIEW = "productList";
     public static final String PAGE_OK = "productAll.jsp";
@@ -33,7 +36,9 @@ public class ProductAllControllerOld extends HttpServlet {
             req.getRequestDispatcher(PAGE_OK).forward(req, resp);
             return;
         } catch (DaoSystemException ignore) {
-            /*NOP*/
+            */
+/*NOP*//*
+
         } catch (NoSuchEntityException e) {
             e.printStackTrace();
         }
@@ -42,3 +47,4 @@ public class ProductAllControllerOld extends HttpServlet {
 
     }
 }
+*/

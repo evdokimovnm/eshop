@@ -7,7 +7,7 @@
             <br><a href="/registration.jsp">Registration</a>
         </c:if>
         <c:if test="${not empty user}">
-            <br/>Your are ${user.login}!
+            <br/>You are ${user.login}!
             <br><a href="/userLogout.do?ref=product.do&id=${product.id}">Logout</a>
         </c:if>
         <hr/>

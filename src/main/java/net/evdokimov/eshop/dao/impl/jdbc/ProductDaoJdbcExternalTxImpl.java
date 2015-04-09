@@ -17,9 +17,9 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
     /*private static final String DRIVER_CLASS_NAME = "org.hsqldb.jdbc.JDBCDriver";*/
 
-    private static final String SELECT_ALL_SQL = "SELECT id, name FROM products";
-    private static final String SELECT_BY_ID_SQL = "SELECT id, name FROM products WHERE id=";
-    private static final String INSERT = "INSERT INTO products (name) VALUES (?);";
+    private static final String SELECT_ALL_SQL = "SELECT id, name, type_id FROM products";
+    private static final String SELECT_BY_ID_SQL = "SELECT id, name, type_id FROM products WHERE id=";
+    private static final String INSERT = "INSERT INTO products (name, type_id) VALUES (?, ?);";
     private static final String REMOVE = "DELETE FROM products WHERE id=";
 
     static {
@@ -43,7 +43,7 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
             if(!rs.next()) {
                 throw new NoSuchEntityException("No Product for id = " + id);
             }
-            return new Product(rs.getInt("id"), rs.getString("name"));
+            return new Product(rs.getInt("id"), rs.getString("name"), rs.getInt("type_id"));
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoSystemException("Some exception", e);
@@ -65,7 +65,7 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
                 throw new NoSuchEntityException("No Products");
             }
             do {
-                result.add(new Product(rs.getInt("id"), rs.getString("name")));
+                result.add(new Product(rs.getInt("id"), rs.getString("name"), rs.getInt("type_id")));
             } while (rs.next());
             return result;
         } catch (SQLException e) {
@@ -83,6 +83,7 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
             Connection conn = dataSource.getConnection();
             prepareStatement = conn.prepareStatement(INSERT);
             prepareStatement.setString(1, product.getName());
+            prepareStatement.setInt(2, product.getTypeId());
             prepareStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

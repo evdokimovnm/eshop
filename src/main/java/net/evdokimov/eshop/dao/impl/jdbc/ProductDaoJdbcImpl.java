@@ -1,3 +1,4 @@
+/*
 package net.evdokimov.eshop.dao.impl.jdbc;
 
 import net.evdokimov.eshop.dao.ProductDao;
@@ -42,6 +43,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             ResultSet rs = statement.executeQuery();
             rs.next();
             String name = rs.getString("name");
+
             return new Product(id, name);
         } catch (SQLException e) {
             System.out.println(e);
@@ -80,6 +82,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
 }
 
+*/
 /*class Test {
     public static void main(String[] args) throws DaoSystemException, NoSuchEntityException, SQLException, ClassNotFoundException {
         ProductDaoJdbcImpl dao = new ProductDaoJdbcImpl();
@@ -88,5 +91,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
         List products = dao.selectAll();
         System.out.println(products);
     }
-}*/
+}*//*
 
+
+*/

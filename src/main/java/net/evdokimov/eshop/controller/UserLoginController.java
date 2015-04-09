@@ -18,9 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- * Created by 1 on 21.03.2015.
- */
+
 public class UserLoginController extends DependencyInjectionServlet {
 
     public static final String PAGE_ERROR = "error.jsp";

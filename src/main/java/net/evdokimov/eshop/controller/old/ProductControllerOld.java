@@ -1,3 +1,4 @@
+/*
 package net.evdokimov.eshop.controller.old;
 import net.evdokimov.eshop.dao.ProductDao;
 import net.evdokimov.eshop.dao.exception.DaoSystemException;
@@ -32,7 +33,9 @@ public class ProductControllerOld extends HttpServlet  {
                 req.getRequestDispatcher(PAGE_OK).forward(req, resp);
                 return;
             } catch (NumberFormatException | NoSuchEntityException | DaoSystemException e) {
-                /*NOP*/
+                */
+/*NOP*//*
+
             }
         }
         //FAIL
@@ -40,3 +43,4 @@ public class ProductControllerOld extends HttpServlet  {
 
     }
 }
+*/

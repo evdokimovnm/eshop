@@ -1,3 +1,4 @@
+/*
 package net.evdokimov.eshop.dao.impl.mock;
 
 import net.evdokimov.eshop.dao.ProductDao;
@@ -44,3 +45,4 @@ public class ProductDaoMock_1 implements ProductDao {
 
     }
 }
+*/

@@ -6,11 +6,13 @@ package net.evdokimov.eshop.entity;
 public class Product {
     private final int id;//нужен для связи с DB, пусть его выдает DB
     private String name;
+    private int typeId;
 
 
-    public Product(int id, String name) {
+    public Product(int id, String name, int type) {
         this.id = id;
         this.name = name;
+        this.typeId = type;
     }
 
 
@@ -24,6 +26,10 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getTypeId() {
+        return typeId;
     }
 
     @Override
