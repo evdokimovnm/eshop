@@ -41,13 +41,11 @@ public class ProductController extends DependencyInjectionServlet {
                 req.setAttribute(ATTRIBUTE_MODEL_TO_VIEW, model);//внутренний редирект
                 //OK
                 req.getRequestDispatcher(PAGE_OK).forward(req, resp);
-                return;
             } catch (DaoException | NumberFormatException e) {
                 e.printStackTrace();
+                //FAIL
+                resp.sendRedirect(PAGE_ERROR);//внешний редирект
             }
         }
-        //FAIL
-        resp.sendRedirect(PAGE_ERROR);//внешний редирект
-
     }
 }

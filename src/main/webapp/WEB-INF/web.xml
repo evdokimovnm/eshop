@@ -15,7 +15,7 @@
         <url-pattern>/product.do</url-pattern>
     </servlet-mapping>
 
-    <!--allProduct -->
+    <!--allProducts -->
     <servlet>
         <servlet-name>ProductAllController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductAllController</servlet-class>
@@ -33,6 +33,16 @@
     <servlet-mapping>
         <servlet-name>ProductTypeController</servlet-name>
         <url-pattern>/productType.do</url-pattern>
+    </servlet-mapping>
+
+    <!--ChooseProducts -->
+    <servlet>
+        <servlet-name>ProductChooseController</servlet-name>
+        <servlet-class>net.evdokimov.eshop.controller.ProductChooseController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductChooseController</servlet-name>
+        <url-pattern>/productChoose.do</url-pattern>
     </servlet-mapping>
 
     <!--InsertNewProduct-->

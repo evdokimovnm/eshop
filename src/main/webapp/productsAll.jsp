@@ -1,6 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
+    <head>
+        <title>AllProductsPage</title>
+    </head>
+
     <body>
         <p align="right">
             <c:if test="${empty user}">
@@ -15,7 +19,7 @@
         <hr/>
         <br/>
         <br/>
-        <b>ALL PRODUCTS PAGE</b>
+        <h2>ALL PRODUCTS PAGE</h2>
         <ul>
             <c:forEach var="productList" items="${productList}">
                 <li>
@@ -23,6 +27,16 @@
                     <%if (session.getAttribute("manager") != null) { %>
                     <a href="/productRemove.do?id=${productList.id}">Remove</a>
                     <%}%>
+                </li>
+            </c:forEach>
+        </ul>
+
+
+        <br/><b>Choose type of product for getting list with this type</b>
+        <ul>
+            <c:forEach var="productTypeList" items="${productTypeList}">
+                <li>
+                    <a href="/productChoose.do?type_id=${productTypeList.id}">${productTypeList.type}</a>
                 </li>
             </c:forEach>
         </ul>

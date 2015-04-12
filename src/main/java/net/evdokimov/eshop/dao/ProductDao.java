@@ -16,6 +16,8 @@ public interface ProductDao {
      */
     public Product selectById(int id) throws DaoSystemException, NoSuchEntityException;
 
+    public List<Product> selectByTypeId(int type_id) throws DaoSystemException, NoSuchEntityException;
+
     public List<Product> selectAll() throws DaoSystemException, NoSuchEntityException;
 
     public void insert(Product product) throws DaoSystemException;

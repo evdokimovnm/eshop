@@ -21,6 +21,7 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
     private static final String SELECT_BY_ID_SQL = "SELECT id, name, type_id FROM products WHERE id=";
     private static final String INSERT = "INSERT INTO products (name, type_id) VALUES (?, ?);";
     private static final String REMOVE = "DELETE FROM products WHERE id=";
+    private static final String SELECT_BY_TYPE_ID_SQL = "SELECT * FROM products WHERE type_id=?";
 
     static {
         JdbcUtils.initDriver(DRIVER_CLASS_NAME);
@@ -53,6 +54,28 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
     }
 
     @Override
+    public List<Product> selectByTypeId(int type_id) throws DaoSystemException, NoSuchEntityException {
+        PreparedStatement pStmt = null;
+        ResultSet rs = null;
+        List<Product> result = new ArrayList<>();
+        try {
+            Connection conn = dataSource.getConnection();
+            pStmt = conn.prepareStatement(SELECT_BY_TYPE_ID_SQL);
+            pStmt.setInt(1, type_id);
+            rs = pStmt.executeQuery();
+            if(!rs.next()) {
+                throw new NoSuchEntityException("No products with this type");
+            }
+            do  {
+                result.add(new Product(rs.getInt("id"), rs.getString("name"), type_id));
+            } while (rs.next());
+            return result;
+        } catch (SQLException e) {
+            throw new DaoSystemException("Some exception", e);
+        }
+    }
+
+    @Override
     public List<Product> selectAll() throws DaoSystemException, NoSuchEntityException {
         List<Product> result = new ArrayList<>();
         Statement stmt = null;
@@ -78,18 +101,18 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
 
     @Override
     public void insert(Product product) throws DaoSystemException {
-        PreparedStatement prepareStatement = null;
+        PreparedStatement pStmt = null;
         try {
             Connection conn = dataSource.getConnection();
-            prepareStatement = conn.prepareStatement(INSERT);
-            prepareStatement.setString(1, product.getName());
-            prepareStatement.setInt(2, product.getTypeId());
-            prepareStatement.executeUpdate();
+            pStmt = conn.prepareStatement(INSERT);
+            pStmt.setString(1, product.getName());
+            pStmt.setInt(2, product.getTypeId());
+            pStmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoSystemException("Some exception", e);
         } finally {
-            JdbcUtils.closeQuietly(prepareStatement);
+            JdbcUtils.closeQuietly(pStmt);
         }
     }
 
