@@ -8,11 +8,7 @@
     <!--product -->
     <servlet>
         <servlet-name>productController</servlet-name>
-        <servlet-class>net.evdokimov.eshop.controller.ProductControllerExternalTx</servlet-class>
-        <!--<init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>/appContext-dao.xml</param-value>
-        </init-param>-->
+        <servlet-class>net.evdokimov.eshop.controller.ProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productController</servlet-name>
@@ -27,6 +23,16 @@
     <servlet-mapping>
         <servlet-name>ProductAllController</servlet-name>
         <url-pattern>/productAll.do</url-pattern>
+    </servlet-mapping>
+
+    <!--TypeOfProduct -->
+    <servlet>
+        <servlet-name>ProductTypeController</servlet-name>
+        <servlet-class>net.evdokimov.eshop.controller.ProductTypeAllController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductTypeController</servlet-name>
+        <url-pattern>/productType.do</url-pattern>
     </servlet-mapping>
 
     <!--InsertNewProduct-->
@@ -49,7 +55,7 @@
         <url-pattern>/productRemove.do</url-pattern>
     </servlet-mapping>
 
-    <!--productAddToBuckets -->
+    <!--productAddToBucket -->
     <servlet>
         <servlet-name>productAddToBucketController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductAddToBucketController</servlet-class>
@@ -59,7 +65,7 @@
         <url-pattern>/productAddToBucket.do</url-pattern>
     </servlet-mapping>
 
-    <!--productRemoveFromBuckets -->
+    <!--productRemoveFromBucket -->
     <servlet>
         <servlet-name>productRemoveFromBucketController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductRemoveFromBucketController</servlet-class>
@@ -69,7 +75,7 @@
         <url-pattern>/productRemoveFromBucket.do</url-pattern>
     </servlet-mapping>
 
-    <!--productRemoveAllFromBuckets -->
+    <!--productRemoveAllFromBucket -->
     <servlet>
         <servlet-name>productRemoveAllFromBucketController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductRemoveAllFromBucketController</servlet-class>
@@ -89,6 +95,7 @@
         <servlet-name>userRegistrationController</servlet-name>
         <url-pattern>/userRegistration.do</url-pattern>
     </servlet-mapping>
+
     <!--userLoginController-->
     <servlet>
         <servlet-name>userLoginController</servlet-name>
@@ -98,6 +105,7 @@
         <servlet-name>userLoginController</servlet-name>
         <url-pattern>/userLogin.do</url-pattern>
     </servlet-mapping>
+
     <!--userLogoutController-->
     <servlet>
         <servlet-name>userLogoutController</servlet-name>
@@ -108,45 +116,7 @@
         <url-pattern>/userLogout.do</url-pattern>
     </servlet-mapping>
 
-    <!--mock -->
-    <servlet>
-        <servlet-name>mockController</servlet-name>
-        <servlet-class>net.evdokimov.eshop.controller.demo.DemoController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>mockController</servlet-name>
-        <url-pattern>/mock.do</url-pattern><!--по такому URL будет отвечать mockController-->
-    </servlet-mapping>
-    <!--mvcMockController-->
-    <servlet>
-        <servlet-name>mvcMockController</servlet-name>
-        <servlet-class>net.evdokimov.eshop.controller.demo.MVCDemoController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>mvcMockController</servlet-name>
-        <url-pattern>/mvcMock.do</url-pattern>
-    </servlet-mapping>
-    <!--sessionMockController-->
-    <servlet>
-        <servlet-name>sessionMockController</servlet-name>
-        <servlet-class>net.evdokimov.eshop.controller.demo.SessionDemoController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>sessionMockController</servlet-name>
-        <url-pattern>/sessionMock.do</url-pattern>
-    </servlet-mapping>
-    <!--cookiesMockController-->
-    <servlet>
-        <servlet-name>cookiesMockController</servlet-name>
-        <servlet-class>net.evdokimov.eshop.controller.demo.CookiesDemoController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>cookiesMockController</servlet-name>
-        <url-pattern>/cookiesMock.do</url-pattern>
-    </servlet-mapping>
-
     <!--FILTERS-->
-
     <!--userManagerSessionFilter-->
     <filter>
         <filter-name>userManagerSessionFilter</filter-name>
@@ -156,6 +126,7 @@
         <filter-name>userManagerSessionFilter</filter-name>
         <url-pattern>/userManagerSession.do</url-pattern>
     </filter-mapping>
+
     <!--userCustomerSessionFilter-->
     <filter>
         <filter-name>userCustomerSessionFilter</filter-name>
@@ -175,6 +146,7 @@
         <filter-name>timeFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
     <!--request info-->
     <filter>
         <filter-name>infoFilter</filter-name>
@@ -183,25 +155,7 @@
     <filter-mapping>
         <filter-name>infoFilter</filter-name>
         <url-pattern>*.do</url-pattern>
-        <dispatcher>REQUEST</dispatcher><!--???-->
-    </filter-mapping>
-    <!--  -->
-    <filter>
-        <filter-name>attributesToSessionFilter</filter-name>
-        <filter-class>net.evdokimov.eshop.filter.AddAttributesToSessionFilter</filter-class>
-        <!--статическая мапа-->
-        <init-param>
-            <param-name>filter-param-name-A</param-name>
-            <param-value>filter-param-value-A</param-value>
-        </init-param>
-        <init-param>
-            <param-name>filter-param-name-B</param-name>
-            <param-value>filter-param-value-B</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>attributesToSessionFilter</filter-name>
-        <servlet-name>mockController</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
     </filter-mapping>
 
     <!--LISTENERS-->
@@ -209,11 +163,10 @@
         <listener-class>net.evdokimov.eshop.listener.MyServletContextListener</listener-class>
     </listener>
 
-    <!--по ключу 'contextConfigLocation' из ServletContext мы-->
+    <!--по ключу 'contextConfigLocation' из ServletContext мы достаем appContext-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/appContext-dao-aop-schema.xml</param-value>
-        <!--<param-value>/appContext-dao-external-tx.xml</param-value>-->
     </context-param>
 
     <session-config>
@@ -221,7 +174,7 @@
     </session-config>
 
     <welcome-file-list>
-        <welcome-file>productAll.do</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>

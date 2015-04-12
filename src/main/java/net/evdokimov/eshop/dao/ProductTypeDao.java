@@ -4,10 +4,12 @@ import net.evdokimov.eshop.dao.exception.DaoSystemException;
 import net.evdokimov.eshop.dao.exception.NoSuchEntityException;
 import net.evdokimov.eshop.entity.ProductType;
 
-/**
- * Created by 1 on 09.04.2015.
- */
+import java.util.List;
+
+
 public interface ProductTypeDao {
 
     public int getProductTypeId(ProductType productType) throws DaoSystemException, NoSuchEntityException;
+
+    public List<ProductType> getProductTypeAll() throws DaoSystemException;
 }

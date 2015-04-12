@@ -23,7 +23,9 @@
           <element id="library" level="project" name="Maven: org.hsqldb:hsqldb:2.3.0" />
           <element id="library" level="project" name="Maven: com.jolbox:bonecp:0.8.0-rc3" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:15.0" />
-          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.2" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.6.4" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.10" />
         </element>
       </element>
       <element id="directory" name="META-INF">

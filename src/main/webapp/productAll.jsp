@@ -2,14 +2,16 @@
 
 <html>
     <body>
-        <c:if test="${empty user}">
-            <br><a href="/login.jsp?ref=productAll.do">Login</a>
-            <br><a href="/registration.jsp">Registration</a>
-        </c:if>
-        <c:if test="${not empty user}">
-            <br/>You are ${user.login}!
-            <br><a href="/userLogout.do?ref=productAll.do">Logout</a>
-        </c:if>
+        <p align="right">
+            <c:if test="${empty user}">
+                <br><a href="/login.jsp?ref=productAll.do">Login</a>
+                <br><a href="/registration.jsp">Registration</a>
+            </c:if>
+            <c:if test="${not empty user}">
+                <br/>You are ${user.login}!
+                <br><a href="/userLogout.do?ref=productAll.do">Logout</a>
+            </c:if>
+        </p>
         <hr/>
         <br/>
         <br/>
@@ -31,9 +33,9 @@
             <br/>Product name:<input type="text" name="productName">
             <br/>Product type:
                 <select name="productType" size="1">
-                    <option value="Food">Food</option>
-                    <option value="Technique">Technique</option>
-                    <option value="Animal">Animal</option>
+                    <c:forEach var="productTypeList" items="${productTypeList}">
+                        <option value="${productTypeList.type}">${productTypeList.type}</option>
+                    </c:forEach>
                 </select>
             <br/><input type="submit" value="Add">
         </form>

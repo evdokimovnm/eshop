@@ -7,18 +7,19 @@ import java.sql.SQLException;
 
 
 public class PoolDataSourceHolder extends BaseDataSource {
-    private static final String JDBC_URL =
-            "jdbc:mysql://127.0.0.1:3306/eshop_db?user=username&password=password";
+    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/eshop_db";
 
     private final static BoneCPDataSource dataSource;
 
     static {
         dataSource = new BoneCPDataSource();
         dataSource.setJdbcUrl(JDBC_URL);
+        dataSource.setUsername("username");
+        dataSource.setPassword("password");
     }
 
     public PoolDataSourceHolder() {
-        System.out.println("WOOOOOOOOORRRRRRNIIIINNNNNGGGGGGGGGGG!!!!!");
+        System.out.println("PoolDataSource is created");
     }
 
     @Override

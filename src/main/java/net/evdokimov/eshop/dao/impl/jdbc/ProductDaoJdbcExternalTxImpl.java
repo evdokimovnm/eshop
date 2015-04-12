@@ -26,7 +26,7 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
         JdbcUtils.initDriver(DRIVER_CLASS_NAME);
     }
 
-    private DataSource dataSource;//для того чтобы получить именно то connection
+    private DataSource dataSource;//для того чтобы получить именно ту connection
 
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -93,7 +93,7 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
         }
     }
 
-    public int[] insetBatch(List<Product> products) throws DaoSystemException {
+    /*public int[] insetBatch(List<Product> products) throws DaoSystemException {
         try {
             Connection conn = dataSource.getConnection();
             PreparedStatement prepareStatement = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
@@ -113,7 +113,7 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
             e.printStackTrace();
             throw new DaoSystemException(e.getMessage());
         }
-    }
+    }*/
 
     @Override
     public void delete(int id) throws DaoSystemException, NoSuchEntityException {
@@ -133,44 +133,3 @@ public class ProductDaoJdbcExternalTxImpl implements ProductDao {
         }
     }
 }
-//class Test1 {
-//    private static final String INSERT = "INSERT INTO products (name) VALUES (?);";
-//    private static final String SELECT_BY_ID_SQL = "SELECT name FROM products WHERE id=";
-//
-//    public static void main(String[] args) throws SQLException, DaoSystemException {
-//        /*List<Product> products = Arrays.asList(new Product(0, "Car1"), new Product(0, "Car2"));
-//        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/eshop_db?user=username&password=password");
-//        try {
-//            PreparedStatement statement = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-//            for (Product product : products) {
-//                statement.setString(1, product.getName());
-//                statement.addBatch();
-//            }
-//            statement.executeBatch();
-//
-//            int [] keys = new int [products.size()];
-//            ResultSet rs = statement.getGeneratedKeys();
-//            for(int i = 0; rs.next(); i++) {
-//                keys[i] = rs.getInt(1);
-//            }
-//            System.out.println(Arrays.toString(keys));
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            throw new DaoSystemException(e.getMessage());
-//        }*/
-//
-//        Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/eshop_db?user=username&password=password");
-//        try {
-//            int id = 2;
-//
-//            Statement statement = conn.createStatement();
-//            ResultSet rs = statement.executeQuery(SELECT_BY_ID_SQL + id);
-//            rs.next();
-//            String name = rs.getString("name");
-//            System.out.println(new Product(id, name));
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            throw new DaoSystemException(e.getMessage());
-//        }
-//    }
-//}
