@@ -37,9 +37,11 @@
       <column name="login" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <column name="password" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <column name="email" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="role" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <index name="email_UNIQUE" unique="true" columns="login"/>
-      <index name="idUsers_UNIQUE" unique="true" columns="id"/>
+      <index name="email_UNIQUE" unique="true" columns="email"/>
+      <index name="id_UNIQUE" unique="true" columns="id"/>
+      <index name="login_UNIQUE" unique="true" columns="login"/>
     </table>
   </data-source>
 </component>

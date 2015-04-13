@@ -6,13 +6,15 @@ public class User {
     private String login;
     private String password;
     private String email;
+    private String role;
 
 
-    public User(int id, String login, String password, String email) {
+    public User(int id, String login, String password, String email, String role) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.email = email;
+        this.role = role;
     }
 
     public int getId() {
@@ -43,13 +45,18 @@ public class User {
         this.email = email;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", E-amil='" + email + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

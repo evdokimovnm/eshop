@@ -22,7 +22,7 @@ import static org.apache.log4j.Logger.getLogger;
 
 public class ProductTypeAllController extends DependencyInjectionServlet {
     public static final String ATTRIBUTE_MODEL_TO_VIEW = "productTypeList";
-    public static final String PAGE_OK = "productsAll.jsp";
+    public static final String PAGE_OK = "productAll.jsp";
     public static final String PAGE_ERROR = "error.jsp";
 
     public static final Logger logger = getLogger(getCurrentClassName());

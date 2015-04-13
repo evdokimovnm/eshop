@@ -41,8 +41,8 @@ public class UserRegistrationController extends DependencyInjectionServlet {
                     User model = txManager.doInTransaction(new UnitOfWork<User, DaoException>() {
                         @Override
                         public User doInTx() throws DaoException {
-                            int gk = userDao.insert(new User(0, login, password, email));
-                            return new User(gk, login, password, email);
+                            int gk = userDao.insert(new User(0, login, password, email, "customer"));
+                            return new User(gk, login, password, email, "customer");
                         }
                     });
                     HttpSession session = req.getSession();

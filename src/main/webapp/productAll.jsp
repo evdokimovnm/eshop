@@ -1,3 +1,4 @@
+<%@ page import="net.evdokimov.eshop.entity.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
@@ -18,14 +19,16 @@
         </p>
         <hr/>
         <br/>
-        <br/>
-        <h2>ALL PRODUCTS PAGE</h2>
+        <%if (session.getAttribute("user") != null && ((User)session.getAttribute("user")).getRole().equals("manager")) { %>
+        <h1 align="center">Manager version</h1>
+        <%}%>
+        <br/><h2 align="center">ALL PRODUCTS PAGE</h2>
         <ul>
             <c:forEach var="productList" items="${productList}">
                 <li>
                     <a href="/product.do?id=${productList.id}">${productList.name}</a>
-                    <%if (session.getAttribute("manager") != null) { %>
-                    <a href="/productRemove.do?id=${productList.id}">Remove</a>
+                    <%if (session.getAttribute("user") != null && ((User)session.getAttribute("user")).getRole().equals("manager")) { %>
+                    <a href="/productRemove.do?id=${productList.id}"> X</a>
                     <%}%>
                 </li>
             </c:forEach>
@@ -41,8 +44,8 @@
             </c:forEach>
         </ul>
 
-        <%if (session.getAttribute("manager") != null) { %>
-        <b>Add new product:</b>
+        <%if (session.getAttribute("user") != null && ((User)session.getAttribute("user")).getRole().equals("manager")) { %>
+        <br/><b>Add new product:</b>
         <form action="/productInsertNew.do" method="post">
             <br/>Product name:<input type="text" name="productName">
             <br/>Product type:

@@ -14,8 +14,8 @@ public class UserDaoJdbcExternalTxImpl implements UserDao {
 
     private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
-    private static final String INSERT_SQL = "INSERT INTO users (login, password, email) VALUES (?, ?, ?);";
-    private static final String SELECT_BY_ID_AND_PASSWORD_SQL = "SELECT id, login, password, email FROM users WHERE login=? AND password=?;";
+    private static final String INSERT_SQL = "INSERT INTO users (login, password, email, role) VALUES (?, ?, ?, ?);";
+    private static final String SELECT_BY_ID_AND_PASSWORD_SQL = "SELECT id, login, password, email, role FROM users WHERE login=? AND password=?;";
 
 
     static {
@@ -41,7 +41,7 @@ public class UserDaoJdbcExternalTxImpl implements UserDao {
             prepareStatement.setString(2, password);
             rs = prepareStatement.executeQuery();
             if (rs.next()) {
-                return new User(rs.getInt("id"), rs.getString("login"), rs.getString("password"), rs.getString("email"));
+                return new User(rs.getInt("id"), rs.getString("login"), rs.getString("password"), rs.getString("email"), rs.getString("role"));
             } else {
                 throw new NoSuchEntityException("No users with login = " + login);
             }
@@ -57,27 +57,28 @@ public class UserDaoJdbcExternalTxImpl implements UserDao {
 
     @Override
     public int insert(User user) throws DaoSystemException, DaoBusinessException {
-        PreparedStatement prepareStatement = null;
+        PreparedStatement pStmt = null;
         ResultSet rs = null;
         try {
             Connection conn = dataSource.getConnection();
-            prepareStatement = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
-            prepareStatement.setString(1, user.getLogin());
-            prepareStatement.setString(2, user.getPassword());
-            prepareStatement.setString(3, user.getEmail());
+            pStmt = conn.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
+            pStmt.setString(1, user.getLogin());
+            pStmt.setString(2, user.getPassword());
+            pStmt.setString(3, user.getEmail());
+            pStmt.setString(4, user.getRole());
             try {
-                prepareStatement.executeUpdate();
+                pStmt.executeUpdate();
             } catch (SQLException e) {
                 throw new DaoBusinessException("That login or email is already exist", e);
             }
-            rs = prepareStatement.getGeneratedKeys();
+            rs = pStmt.getGeneratedKeys();
             rs.next();
             return rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DaoSystemException("Some exception: ", e);
         } finally {
-            JdbcUtils.closeQuietly(rs, prepareStatement);
+            JdbcUtils.closeQuietly(rs, pStmt);
         }
     }
 
