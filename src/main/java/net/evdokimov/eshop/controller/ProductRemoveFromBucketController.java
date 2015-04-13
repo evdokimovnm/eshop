@@ -27,6 +27,7 @@ import static net.evdokimov.eshop.controller.SessionAttributes.PRODUCTS_IN_BUCKE
 public class ProductRemoveFromBucketController extends DependencyInjectionServlet {
     public static final String PARAM_ID = "id";
     public static final String PAGE_ERROR = "productAll.do";
+    public static final String PAGE_RETURN = "ref";
 
     @Inject("productDao")
     private ProductDao productDao;
@@ -38,6 +39,7 @@ public class ProductRemoveFromBucketController extends DependencyInjectionServle
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException {
         String idStr = req.getParameter(PARAM_ID);
+        String ref = req.getParameter(PAGE_RETURN);
         if (idStr != null) {
             try {
                 final Integer id = Integer.valueOf(idStr);
@@ -57,13 +59,18 @@ public class ProductRemoveFromBucketController extends DependencyInjectionServle
                     newBucked.remove(product);
                 }
                 session.setAttribute(PRODUCTS_IN_BUCKET, unmodifiableMap(newBucked));
-
                 // OK
-                String newLocation = "product.do?id=" + id;
-                resp.sendRedirect(newLocation);
-                return;
+                if (ref == null) {
+                    String newLocation = "product.do?id=" + id;
+                    resp.sendRedirect(newLocation);
+                    return;
+                } else {
+                    String newLocation = "bucket.jsp";
+                    resp.sendRedirect(newLocation);
+                    return;
+                }
             } catch (NumberFormatException | NoSuchEntityException | DaoSystemException ignore) {
-                /*NOP*/
+                ignore.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }

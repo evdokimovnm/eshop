@@ -33,6 +33,13 @@ public class ProductRemoveAllFromBucketController extends HttpServlet {
             } catch (NumberFormatException ignore) {
                 // NOP
             }
+        } else {
+            HttpSession session = req.getSession(false);
+            session.removeAttribute(PRODUCTS_IN_BUCKET);
+            //OK
+            String newLocation = "productAll.do";
+            resp.sendRedirect(newLocation);
+            return;
         }
         //FAIL
         resp.sendRedirect(PAGE_ERROR);

@@ -126,6 +126,17 @@
         <url-pattern>/userLogout.do</url-pattern>
     </servlet-mapping>
 
+    <!--ORDERS CONTROLLERS-->
+    <!--ordersController -->
+    <servlet>
+        <servlet-name>orderController</servlet-name>
+        <servlet-class>net.evdokimov.eshop.controller.OrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>orderController</servlet-name>
+        <url-pattern>/order.do</url-pattern>
+    </servlet-mapping>
+
     <!--FILTERS-->
     <!--userManagerSessionFilter-->
     <filter>

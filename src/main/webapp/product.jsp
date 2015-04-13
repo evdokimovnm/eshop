@@ -27,7 +27,7 @@
         <br/>
         <br/>
         <br/>
-        <b>Products in bucked</b>
+        <b>Products in bucket</b>
         <ul>
             <c:forEach var="productInBucket" items="${productsInBucket}">
                 <li>
@@ -37,7 +37,9 @@
                 </li>
             </c:forEach>
         </ul>
-        <br/>
-        <br><a href="/productRemoveAllFromBucket.do?id=${product.id}">Clean bucket</a>
+    <c:if test="${not empty productsInBucket}">
+        <br><a href="bucket.jsp">Buy</a>
+        <br/><a href="/productRemoveAllFromBucket.do?id=${product.id}">Clean bucket</a>
+    </c:if>
     </body>
 </html>

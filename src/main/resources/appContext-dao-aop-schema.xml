@@ -70,5 +70,10 @@
         <property name="dataSource" ref="txManager"/>
     </bean>
 
+    <!--OrderDao-->
+    <bean id="orderDao" class="net.evdokimov.eshop.dao.impl.jdbc.OrderDaoJdbcExternalTxImpl" scope="singleton">
+        <property name="dataSource" ref="txManager"/>
+    </bean>
+
 </beans>
 

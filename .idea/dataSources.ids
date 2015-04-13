@@ -19,18 +19,24 @@
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="eshop_db"/>
+    <table name="orders" schema="" catalog="eshop_db" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+    </table>
     <table name="product_type" schema="" catalog="eshop_db" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="type" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="type" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <index name="unique_id" unique="true" columns="id"/>
-      <index name="unique_type" unique="true" columns="type"/>
+      <index name="id_UNIQUE" unique="true" columns="id"/>
+      <index name="type_UNIQUE" unique="true" columns="type"/>
     </table>
     <table name="products" schema="" catalog="eshop_db" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="64" scale="0" nullable="true" jdbcType="12"/>
       <column name="type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <index name="id_UNIQUE" unique="true" columns="id"/>
     </table>
     <table name="users" schema="" catalog="eshop_db" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
