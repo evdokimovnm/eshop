@@ -60,21 +60,21 @@ public class ProductRemoveFromBucketController extends DependencyInjectionServle
                 }
                 session.setAttribute(PRODUCTS_IN_BUCKET, unmodifiableMap(newBucked));
                 // OK
-                if (ref == null) {
-                    String newLocation = "product.do?id=" + id;
-                    resp.sendRedirect(newLocation);
-                    return;
-                } else {
+                if (ref.equals("bucket")){
                     String newLocation = "bucket.jsp";
                     resp.sendRedirect(newLocation);
                     return;
+                } else {
+                    String newLocation = "product.do?id=" + ref;
+                    resp.sendRedirect(newLocation);
+                    return;
                 }
+
             } catch (NumberFormatException | NoSuchEntityException | DaoSystemException ignore) {
                 ignore.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         //FAIL
         resp.sendRedirect(PAGE_ERROR);

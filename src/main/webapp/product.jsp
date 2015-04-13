@@ -33,7 +33,7 @@
                 <li>
                     <a href="/product.do?id=${productInBucket.key.id}">${productInBucket.key.name}</a>: =
                         ${productInBucket.value}
-                    <a href="/productRemoveFromBucket.do?id=${productInBucket.key.id}">X</a>
+                    <a href="/productRemoveFromBucket.do?id=${productInBucket.key.id}&ref=${product.id}">X</a>
                 </li>
             </c:forEach>
         </ul>
