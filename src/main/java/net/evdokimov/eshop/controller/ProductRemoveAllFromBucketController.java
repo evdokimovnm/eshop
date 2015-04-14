@@ -16,11 +16,13 @@ import java.io.IOException;
 public class ProductRemoveAllFromBucketController extends HttpServlet {
     public static final String PAGE_ERROR = "productAll.do";
     public static final String PARAM_ID = "id";
+    public static final String PARAM_REF = "ref";
 
     @Override
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException {
         String idStr = req.getParameter(PARAM_ID);
+        String ref = req.getParameter(PARAM_REF);
         if (idStr != null) {
             try {
                 Integer id = Integer.parseInt(idStr);
@@ -37,7 +39,7 @@ public class ProductRemoveAllFromBucketController extends HttpServlet {
             HttpSession session = req.getSession(false);
             session.removeAttribute(PRODUCTS_IN_BUCKET);
             //OK
-            String newLocation = "productAll.do";
+            String newLocation = ref;
             resp.sendRedirect(newLocation);
             return;
         }

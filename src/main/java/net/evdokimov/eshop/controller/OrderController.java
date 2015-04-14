@@ -19,7 +19,7 @@ import java.util.Map;
 
 
 public class OrderController extends DependencyInjectionServlet {
-    public static final String PAGE_OK = "/productRemoveAllFromBucket.do?ref=bucket";
+    public static final String PAGE_OK = "/productRemoveAllFromBucket.do?ref=orderResult.jsp";
     public static final String PAGE_ERROR = "error.jsp";
 
     @Inject("txManager")

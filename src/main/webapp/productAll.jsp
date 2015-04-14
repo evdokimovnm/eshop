@@ -23,6 +23,16 @@
         <h1 align="center">Manager version</h1>
         <%}%>
         <br/><h2 align="center">ALL PRODUCTS PAGE</h2>
+
+        <br/><b>Choose type of product for getting list with this type</b>
+        <ul>
+            <c:forEach var="productTypeList" items="${productTypeList}">
+                <li>
+                    <a href="/productChoose.do?type_id=${productTypeList.id}">${productTypeList.type}</a>
+                </li>
+            </c:forEach>
+        </ul>
+        <br/><h2>ALL PRODUCTS LIST</h2>
         <ul>
             <c:forEach var="productList" items="${productList}">
                 <li>
@@ -34,15 +44,6 @@
             </c:forEach>
         </ul>
 
-
-        <br/><b>Choose type of product for getting list with this type</b>
-        <ul>
-            <c:forEach var="productTypeList" items="${productTypeList}">
-                <li>
-                    <a href="/productChoose.do?type_id=${productTypeList.id}">${productTypeList.type}</a>
-                </li>
-            </c:forEach>
-        </ul>
 
         <%if (session.getAttribute("user") != null && ((User)session.getAttribute("user")).getRole().equals("manager")) { %>
         <br/><b>Add new product:</b>
