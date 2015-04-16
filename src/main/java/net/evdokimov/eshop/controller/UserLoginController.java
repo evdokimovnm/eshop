@@ -12,13 +12,14 @@ import net.evdokimov.eshop.inject.Inject;
 import static net.evdokimov.eshop.controller.SessionAttributes.LOGIN_USER;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
+@WebServlet(urlPatterns = "/userLogin.do")
 public class UserLoginController extends DependencyInjectionServlet {
 
     public static final String PAGE_ERROR = "error.jsp";

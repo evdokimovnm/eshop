@@ -8,12 +8,13 @@ import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-
+@WebServlet(urlPatterns = "/product.do")
 public class ProductController extends DependencyInjectionServlet {
     public static final String PARAM_ID = "id";
     public static final String ATTRIBUTE_MODEL_TO_VIEW = "product";

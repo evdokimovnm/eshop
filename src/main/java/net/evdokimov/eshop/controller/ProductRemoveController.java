@@ -9,11 +9,12 @@ import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
+@WebServlet(urlPatterns = "/productRemove.do")
 public class ProductRemoveController extends DependencyInjectionServlet {
     public static final String PAGE_ERROR = "error.jsp";
     public static final String PARAM_ID = "id";

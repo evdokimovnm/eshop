@@ -14,6 +14,7 @@ import static net.evdokimov.eshop.controller.SessionAttributes.PRODUCTS_IN_BUCKE
 
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,9 +27,7 @@ import static java.util.Collections.singletonMap;
 import static java.util.Collections.unmodifiableMap;
 
 
-/**
- * Created by Nikita on 07.03.2015.
- */
+@WebServlet(urlPatterns = "/productAddToBucket.do")
 public class ProductAddToBucketController extends DependencyInjectionServlet {
     public static final String PARAM_ID = "id";
     public static final String PAGE_ERROR = "productAll.do";

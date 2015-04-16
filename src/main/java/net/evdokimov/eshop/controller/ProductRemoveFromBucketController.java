@@ -10,6 +10,7 @@ import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,9 +22,8 @@ import java.util.concurrent.Callable;
 import static java.util.Collections.unmodifiableMap;
 import static net.evdokimov.eshop.controller.SessionAttributes.PRODUCTS_IN_BUCKET;
 
-/**
- * Created by Nikita on 07.03.2015.
- */
+
+@WebServlet(urlPatterns = "/productRemoveFromBucket.do")
 public class ProductRemoveFromBucketController extends DependencyInjectionServlet {
     public static final String PARAM_ID = "id";
     public static final String PAGE_ERROR = "productAll.do";

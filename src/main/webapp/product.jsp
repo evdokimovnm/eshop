@@ -9,16 +9,16 @@
             </c:if>
             <c:if test="${not empty user}">
                 <br/>You are ${user.login}!
-                <br><a href="/userLogout.do?ref=product.do&id=${product.id}">Logout</a>
+                <br/><a href="/userLogout.do?ref=product.do&id=${product.id}">Logout</a>
             </c:if>
         </p>
         <hr/>
+        <p align="left"><b><a href="/productAll.do">ALL PRODUCT PAGE</a></b><p>
         <br/>
         <br/>
         <br/>
-        <p align="center"><b><a href="/productAll.do">ALL PRODUCT PAGE</a></b>
         <br/><br/>
-        <b>PRODUCT PAGE</b>
+        <p align="center"> <b>PRODUCT PAGE</b>
         <br>id: ${product.id} <%--EL=Expression Language--%><%--== request.getAttribute("product").getId()--%>
        <%-- <br>id: <%=((Product)request.getAttribute("product")).getId()%>--%> <%--Scriplet--%>
         <br>name: ${product.name}

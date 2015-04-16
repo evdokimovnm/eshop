@@ -6,77 +6,77 @@
 
     <!--CONTROLLERS-->
     <!--product -->
-    <servlet>
+    <!--<servlet>
         <servlet-name>productController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productController</servlet-name>
         <url-pattern>/product.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--allProducts -->
-    <servlet>
+    <!--<servlet>
         <servlet-name>ProductAllController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductAllController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductAllController</servlet-name>
         <url-pattern>/productAll.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--TypeOfProduct -->
-    <servlet>
+    <!--<servlet>
         <servlet-name>ProductTypeController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductTypeAllController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductTypeController</servlet-name>
         <url-pattern>/productType.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--ChooseProducts -->
-    <servlet>
+    <!--<servlet>
         <servlet-name>ProductChooseController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductChooseController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductChooseController</servlet-name>
         <url-pattern>/productChoose.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--InsertNewProduct-->
-    <servlet>
+    <!--<servlet>
         <servlet-name>ProductInsertNewController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductInsertController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductInsertNewController</servlet-name>
         <url-pattern>/productInsertNew.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--RemoveProduct-->
-    <servlet>
+    <!--<servlet>
         <servlet-name>ProductRemoveController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductRemoveController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductRemoveController</servlet-name>
         <url-pattern>/productRemove.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--productAddToBucket -->
-    <servlet>
+    <!--<servlet>
         <servlet-name>productAddToBucketController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductAddToBucketController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productAddToBucketController</servlet-name>
         <url-pattern>/productAddToBucket.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--productRemoveFromBucket -->
-    <servlet>
+   <!-- <servlet>
         <servlet-name>productRemoveFromBucketController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductRemoveFromBucketController</servlet-class>
     </servlet>
@@ -84,58 +84,58 @@
         <servlet-name>productRemoveFromBucketController</servlet-name>
         <url-pattern>/productRemoveFromBucket.do</url-pattern>
     </servlet-mapping>
-
+-->
     <!--productRemoveAllFromBucket -->
-    <servlet>
+    <!--<servlet>
         <servlet-name>productRemoveAllFromBucketController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.ProductRemoveAllFromBucketController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>productRemoveAllFromBucketController</servlet-name>
         <url-pattern>/productRemoveAllFromBucket.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--USER CONTROLLERS-->
     <!--userRegisterController -->
-    <servlet>
+    <!--<servlet>
         <servlet-name>userRegistrationController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.UserRegistrationController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>userRegistrationController</servlet-name>
         <url-pattern>/userRegistration.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--userLoginController-->
-    <servlet>
+    <!--<servlet>
         <servlet-name>userLoginController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.UserLoginController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>userLoginController</servlet-name>
         <url-pattern>/userLogin.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--userLogoutController-->
-    <servlet>
+    <!--<servlet>
         <servlet-name>userLogoutController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.UserLogoutController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>userLogoutController</servlet-name>
         <url-pattern>/userLogout.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--ORDERS CONTROLLERS-->
     <!--ordersController -->
-    <servlet>
+    <!--<servlet>
         <servlet-name>orderController</servlet-name>
         <servlet-class>net.evdokimov.eshop.controller.OrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>orderController</servlet-name>
         <url-pattern>/order.do</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 
     <!--FILTERS-->
     <!--userManagerSessionFilter-->

@@ -9,6 +9,7 @@ import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import org.apache.log4j.Logger;
 
 import static org.apache.log4j.Logger.getLogger;
 import static net.evdokimov.eshop.util.ClassName.getCurrentClassName;
-
+@WebServlet(urlPatterns = "/productAll.do")
 public class ProductAllController extends DependencyInjectionServlet {
     public static final String ATTRIBUTE_MODEL_TO_VIEW = "productList";
     public static final String PAGE_OK = "productType.do";
