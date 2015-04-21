@@ -2,12 +2,13 @@ package net.evdokimov.eshop.controller;
 
 import net.evdokimov.eshop.dao.ProductDao;
 import net.evdokimov.eshop.dao.exception.DaoException;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManager;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.UnitOfWork;
+import net.evdokimov.eshop.dao.impl.jpa.tx.TransactionManager;
+import net.evdokimov.eshop.dao.impl.jpa.tx.UnitOfWork;
 import net.evdokimov.eshop.entity.Product;
 import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,8 +39,8 @@ public class ProductAllController extends DependencyInjectionServlet {
         try {
             List<Product> model = txManager.doInTransaction(new UnitOfWork<List<Product>, DaoException>() {
                 @Override
-                public List<Product> doInTx() throws DaoException {
-                    return productDao.selectAll();
+                public List<Product> doInTx(EntityManager manager) throws DaoException {
+                    return productDao.selectAll(manager);
                 }
             });
             logger.trace("set attribute '" + ATTRIBUTE_MODEL_TO_VIEW + "' to " + model);

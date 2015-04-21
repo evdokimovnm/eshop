@@ -3,13 +3,14 @@ package net.evdokimov.eshop.controller;
 
 import net.evdokimov.eshop.dao.ProductTypeDao;
 import net.evdokimov.eshop.dao.exception.DaoSystemException;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManager;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.UnitOfWork;
+import net.evdokimov.eshop.dao.impl.jpa.tx.TransactionManager;
+import net.evdokimov.eshop.dao.impl.jpa.tx.UnitOfWork;
 import net.evdokimov.eshop.entity.ProductType;
 import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 import org.apache.log4j.Logger;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,10 +40,11 @@ public class ProductTypeAllController extends DependencyInjectionServlet {
         try {
             List<ProductType> model = txManager.doInTransaction(new UnitOfWork<List<ProductType>, DaoSystemException>() {
                 @Override
-                public List<ProductType> doInTx() throws DaoSystemException {
-                    return productTypeDao.getProductTypeAll();
+                public List<ProductType> doInTx(EntityManager manager) throws DaoSystemException {
+                    return productTypeDao.getProductTypeAll(manager);
                 }
             });
+
             logger.trace("set attribute '" + ATTRIBUTE_MODEL_TO_VIEW + "' to " + model);
             req.setAttribute(ATTRIBUTE_MODEL_TO_VIEW, model);
             logger.debug("PAGE_OK: RequestDispatcher forward to '" + PAGE_OK + "'");

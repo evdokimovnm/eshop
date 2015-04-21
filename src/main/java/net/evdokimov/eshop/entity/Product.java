@@ -1,23 +1,34 @@
 package net.evdokimov.eshop.entity;
 
-/**
- * Created by Nikita on 04.03.2015.
- */
+import javax.persistence.*;
+
+@Entity
+@Table(name = "products")
 public class Product {
-    private final int id;//нужен для связи с DB, пусть его выдает DB
+    @Id
+    @Column(name = "id")
+    private int id;
+    @Column(name = "name")
     private String name;
-    private int typeId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "type_id")
+    private ProductType productType;
 
 
-    public Product(int id, String name, int type) {
-        this.id = id;
-        this.name = name;
-        this.typeId = type;
+    public Product() {
     }
 
+    public Product(String name, ProductType productType) {
+        this.name = name;
+        this.productType = productType;
+    }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -28,9 +39,14 @@ public class Product {
         this.name = name;
     }
 
-    public int getTypeId() {
-        return typeId;
+    public ProductType getProductType() {
+        return productType;
     }
+
+    public void setProductType(ProductType typeId) {
+        this.productType = typeId;
+    }
+
 
     @Override
     public boolean equals(Object o) {

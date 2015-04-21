@@ -1,18 +1,40 @@
 package net.evdokimov.eshop.entity;
 
-/**
- * Created by 1 on 09.04.2015.
- */
-public class ProductType {
-    private int id;
-    private String type;
+import javax.persistence.*;
+import java.util.List;
 
-    public ProductType(String type) {
-        this.type = type;
+
+@Entity
+@Table(name = "product_type")
+public class ProductType {
+    @Id
+    @Column(name = "id")
+    private int id;
+    @Column(name = "type")
+    private String type;
+    @OneToMany(mappedBy = "productType")
+    private List<Product> products;
+
+    public ProductType() {
     }
 
-    public ProductType(int id, String type) {
+    public ProductType(int id) {
         this.id = id;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setType(String type) {
         this.type = type;
     }
 

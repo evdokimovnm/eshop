@@ -2,12 +2,13 @@ package net.evdokimov.eshop.controller;
 
 import net.evdokimov.eshop.dao.ProductDao;
 import net.evdokimov.eshop.dao.exception.DaoException;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManager;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.UnitOfWork;
+import net.evdokimov.eshop.dao.impl.jpa.tx.TransactionManager;
+import net.evdokimov.eshop.dao.impl.jpa.tx.UnitOfWork;
 import net.evdokimov.eshop.entity.Product;
 import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +35,8 @@ public class ProductRemoveController extends DependencyInjectionServlet {
                 final int id = Integer.parseInt(parId);
                 txManager.doInTransaction(new UnitOfWork<Product, DaoException>() {
                     @Override
-                    public Product doInTx() throws DaoException {
-                        productDao.delete(id);
+                    public Product doInTx(EntityManager manager) throws DaoException {
+                        productDao.delete(manager, id);
                         return null;
                     }
                 });

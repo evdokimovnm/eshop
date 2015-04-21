@@ -3,12 +3,13 @@ package net.evdokimov.eshop.controller;
 import net.evdokimov.eshop.dao.ProductDao;
 import net.evdokimov.eshop.dao.exception.DaoSystemException;
 import net.evdokimov.eshop.dao.exception.NoSuchEntityException;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManager;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.UnitOfWork;
+import net.evdokimov.eshop.dao.impl.jpa.tx.TransactionManager;
+import net.evdokimov.eshop.dao.impl.jpa.tx.UnitOfWork;
 import net.evdokimov.eshop.entity.Product;
 import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 import static java.util.Collections.unmodifiableMap;
 import static net.evdokimov.eshop.controller.SessionAttributes.PRODUCTS_IN_BUCKET;
@@ -45,8 +45,8 @@ public class ProductRemoveFromBucketController extends DependencyInjectionServle
                 final Integer id = Integer.valueOf(idStr);
                 final Product product = txManager.doInTransaction(new UnitOfWork<Product, Exception>() {
                     @Override
-                    public Product doInTx() throws Exception {
-                        return productDao.selectById(id);
+                    public Product doInTx(EntityManager manager) throws Exception {
+                        return productDao.selectById(manager, id);
                     }
                 });
 

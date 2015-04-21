@@ -4,13 +4,14 @@ package net.evdokimov.eshop.controller;
 import net.evdokimov.eshop.dao.UserDao;
 import net.evdokimov.eshop.dao.exception.DaoBusinessException;
 import net.evdokimov.eshop.dao.exception.DaoException;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManager;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.UnitOfWork;
+import net.evdokimov.eshop.dao.impl.jpa.tx.TransactionManager;
+import net.evdokimov.eshop.dao.impl.jpa.tx.UnitOfWork;
 import net.evdokimov.eshop.entity.User;
 import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 import static net.evdokimov.eshop.controller.SessionAttributes.LOGIN_USER;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,9 +42,8 @@ public class UserRegistrationController extends DependencyInjectionServlet {
                 try {
                     User model = txManager.doInTransaction(new UnitOfWork<User, DaoException>() {
                         @Override
-                        public User doInTx() throws DaoException {
-                            int gk = userDao.insert(new User(0, login, password, email, "customer"));
-                            return new User(gk, login, password, email, "customer");
+                        public User doInTx(EntityManager manager) throws DaoException {
+                            return userDao.insert(manager, new User(login, password, email, "customer"));
                         }
                     });
                     HttpSession session = req.getSession();

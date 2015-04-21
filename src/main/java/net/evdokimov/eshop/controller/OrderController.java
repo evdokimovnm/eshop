@@ -2,14 +2,15 @@ package net.evdokimov.eshop.controller;
 
 import net.evdokimov.eshop.dao.OrderDao;
 import net.evdokimov.eshop.dao.exception.DaoException;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManager;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.UnitOfWork;
+import net.evdokimov.eshop.dao.impl.jpa.tx.TransactionManager;
+import net.evdokimov.eshop.dao.impl.jpa.tx.UnitOfWork;
 import net.evdokimov.eshop.entity.Product;
 import net.evdokimov.eshop.entity.User;
 import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 import static net.evdokimov.eshop.controller.SessionAttributes.*;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,8 +38,8 @@ public class OrderController extends DependencyInjectionServlet {
         try {
             txManager.doInTransaction(new UnitOfWork<Void, DaoException>() {
                 @Override
-                public Void doInTx() throws DaoException {
-                    orderDao.insertOrder(user, productsInBucket);
+                public Void doInTx(EntityManager manager) throws DaoException {
+                    orderDao.insertOrder(manager, user, productsInBucket);
                     return null;
                 }
             });

@@ -1,6 +1,4 @@
-package net.evdokimov.eshop.dao.impl.jdbc.tx;
-
-import java.util.concurrent.Callable;
+package net.evdokimov.eshop.dao.impl.jpa.tx;
 
 public interface TransactionManager {
 

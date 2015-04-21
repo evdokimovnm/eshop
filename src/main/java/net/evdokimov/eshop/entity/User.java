@@ -1,16 +1,30 @@
 package net.evdokimov.eshop.entity;
 
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@Table(name = "users")
 public class User {
-    private final int id;
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int id;
+    @Column(name = "login")
     private String login;
+    @Column(name = "password")
     private String password;
+    @Column(name = "email")
     private String email;
+    @Column(name = "role")
     private String role;
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
+    public User() {
+    }
 
-    public User(int id, String login, String password, String email, String role) {
-        this.id = id;
+    public User(String login, String password, String email, String role) {
         this.login = login;
         this.password = password;
         this.email = email;

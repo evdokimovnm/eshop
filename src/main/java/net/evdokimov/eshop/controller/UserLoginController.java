@@ -2,18 +2,17 @@ package net.evdokimov.eshop.controller;
 
 import net.evdokimov.eshop.dao.UserDao;
 import net.evdokimov.eshop.dao.exception.DaoException;
-import net.evdokimov.eshop.dao.exception.DaoSystemException;
 import net.evdokimov.eshop.dao.exception.NoSuchEntityException;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManager;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.UnitOfWork;
+import net.evdokimov.eshop.dao.impl.jpa.tx.TransactionManager;
+import net.evdokimov.eshop.dao.impl.jpa.tx.UnitOfWork;
 import net.evdokimov.eshop.entity.User;
 import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
 import static net.evdokimov.eshop.controller.SessionAttributes.LOGIN_USER;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -38,9 +37,9 @@ public class UserLoginController extends DependencyInjectionServlet {
             try{
                 User model = txManager.doInTransaction(new UnitOfWork<User, DaoException>() {
                     @Override
-                    public User doInTx() throws DaoException {
+                    public User doInTx(EntityManager manager) throws DaoException {
                         try {
-                            return userDao.selectByLoginAndPassword(login, password);
+                            return userDao.selectByLoginAndPassword(manager, login, password);
                         } catch (NoSuchEntityException e) {
                             return null;
                         }

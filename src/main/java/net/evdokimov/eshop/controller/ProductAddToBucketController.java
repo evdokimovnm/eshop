@@ -4,8 +4,8 @@ import net.evdokimov.eshop.dao.ProductDao;
 import net.evdokimov.eshop.dao.exception.DaoException;
 import net.evdokimov.eshop.dao.exception.DaoSystemException;
 import net.evdokimov.eshop.dao.exception.NoSuchEntityException;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManager;
-import net.evdokimov.eshop.dao.impl.jdbc.tx.UnitOfWork;
+import net.evdokimov.eshop.dao.impl.jpa.tx.TransactionManager;
+import net.evdokimov.eshop.dao.impl.jpa.tx.UnitOfWork;
 import net.evdokimov.eshop.entity.Product;
 import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
@@ -13,6 +13,7 @@ import net.evdokimov.eshop.inject.Inject;
 import static net.evdokimov.eshop.controller.SessionAttributes.PRODUCTS_IN_BUCKET;
 
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.concurrent.Callable;
+
 
 import static java.util.Collections.singletonMap;
 import static java.util.Collections.unmodifiableMap;
@@ -47,8 +48,8 @@ public class ProductAddToBucketController extends DependencyInjectionServlet {
                 final Integer id = Integer.valueOf(idStr);
                 Product product = txManager.doInTransaction(new UnitOfWork<Product, DaoException>() {
                     @Override
-                    public Product doInTx() throws DaoException {
-                        return productDao.selectById(id);
+                    public Product doInTx(EntityManager manager) throws DaoException {
+                        return productDao.selectById(manager, id);
                     }
                 });
                 HttpSession session = req.getSession(true);
