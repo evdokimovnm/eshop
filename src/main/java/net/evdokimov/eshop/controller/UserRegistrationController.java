@@ -9,6 +9,8 @@ import net.evdokimov.eshop.dao.impl.jdbc.tx.UnitOfWork;
 import net.evdokimov.eshop.entity.User;
 import net.evdokimov.eshop.inject.DependencyInjectionServlet;
 import net.evdokimov.eshop.inject.Inject;
+import net.evdokimov.eshop.validate.UserValidator;
+
 import static net.evdokimov.eshop.controller.SessionAttributes.LOGIN_USER;
 
 import javax.servlet.ServletException;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
+
 @WebServlet(urlPatterns = "/userRegistration.do")
 public class UserRegistrationController extends DependencyInjectionServlet {
 
@@ -31,18 +35,23 @@ public class UserRegistrationController extends DependencyInjectionServlet {
     @Inject("userDao")
     private UserDao userDao;
 
+    @Inject("userValidator")
+    private UserValidator userValidator;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String login = req.getParameter("login");
         final String password = req.getParameter("password");
         final String email = req.getParameter("email");
+        final User user = new User(0, login, password, email, "customer");
+        Map<String, String> errorMap = userValidator.validate(user);
         try {
-            if(!login.equals("") && !password.equals("") && !email.equals("")) {
+            if (errorMap.isEmpty()) {
                 try {
                     User model = txManager.doInTransaction(new UnitOfWork<User, DaoException>() {
                         @Override
                         public User doInTx() throws DaoException {
-                            int gk = userDao.insert(new User(0, login, password, email, "customer"));
+                            int gk = userDao.insert(user);
                             return new User(gk, login, password, email, "customer");
                         }
                     });
@@ -55,7 +64,7 @@ public class UserRegistrationController extends DependencyInjectionServlet {
                 req.getRequestDispatcher(PAGE_OK).forward(req, resp);
                 return;
             } else {
-                req.setAttribute(LOGIN_OR_PASSWORD_INCORRECT, true);
+                req.setAttribute(LOGIN_OR_PASSWORD_INCORRECT, errorMap);
                 req.getRequestDispatcher(PAGE_OK).forward(req, resp);
                 return;
             }

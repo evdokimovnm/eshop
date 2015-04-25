@@ -2,6 +2,7 @@ package net.evdokimov.eshop.controller;
 
 import net.evdokimov.eshop.dao.ProductDao;
 import net.evdokimov.eshop.dao.exception.DaoException;
+import net.evdokimov.eshop.dao.exception.NoSuchEntityException;
 import net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManager;
 import net.evdokimov.eshop.dao.impl.jdbc.tx.UnitOfWork;
 import net.evdokimov.eshop.entity.Product;
@@ -46,6 +47,9 @@ public class ProductAllController extends DependencyInjectionServlet {
             req.setAttribute(ATTRIBUTE_MODEL_TO_VIEW, model);
             //OK
             logger.debug("PAGE_OK: RequestDispatcher forward to '" + PAGE_OK + "'");
+            req.getRequestDispatcher(PAGE_OK).forward(req, resp);
+        }catch (NoSuchEntityException e) {
+            req.setAttribute(ATTRIBUTE_MODEL_TO_VIEW, null);
             req.getRequestDispatcher(PAGE_OK).forward(req, resp);
         } catch (DaoException e) {
             //FAIL

@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                http://www.springframework.org/schema/beans/spring-beans.xsd
                http://www.springframework.org/schema/context
@@ -45,16 +46,6 @@
         </aop:aspect>
     </aop:config>-->
 
-
-    <!--PoolDataSourceHolder-->
-    <bean id="poolDataSource" class="net.evdokimov.eshop.dao.impl.jdbc.tx.PoolDataSourceHolder" scope="singleton"/>
-
-
-    <!--Transaction Manager-->
-    <bean id="txManager" class="net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManagerImpl" scope="singleton">
-        <property name="dataSource" ref="poolDataSource"/>
-    </bean>
-
     <!--ProductDao-->
     <bean id="productDao" class="net.evdokimov.eshop.dao.impl.jdbc.ProductDaoJdbcExternalTxImpl" scope="singleton">
         <property name="dataSource" ref="txManager"/>
@@ -74,6 +65,27 @@
     <bean id="orderDao" class="net.evdokimov.eshop.dao.impl.jdbc.OrderDaoJdbcExternalTxImpl" scope="singleton">
         <property name="dataSource" ref="txManager"/>
     </bean>
+
+    <!--Validate-->
+    <context:property-placeholder location="user.properties"/>
+
+    <bean id="userValidator" class="net.evdokimov.eshop.validate.UserValidatorImpl" scope="prototype">
+        <property name="emailPattern" value="${email.pattern}"/>
+        <property name="maxLoginLength" value="${login.max}"/>
+        <property name="maxPasswordLength" value="${password.max}"/>
+        <property name="minLoginLength" value="${login.min}"/>
+        <property name="minPasswordLength" value="${password.min}"/>
+    </bean>
+
+
+    <!--PoolDataSourceHolder-->
+    <bean id="poolDataSource" class="net.evdokimov.eshop.dao.impl.jdbc.tx.PoolDataSourceHolder" scope="singleton"/>
+
+    <!--Transaction Manager-->
+    <bean id="txManager" class="net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManagerImpl" scope="singleton">
+        <property name="dataSource" ref="poolDataSource"/>
+    </bean>
+
 
 </beans>
 

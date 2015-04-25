@@ -13,10 +13,15 @@
                     </p>
                 </c:if>
                 <c:if test="${not empty loginIncorrect}">
-                    <p align="center">
-                    <br/> Login or password are incorrect, please input another!
+                    <ul>
+                        <c:forEach var="loginIncorrect" items="${loginIncorrect}">
+                            <li>
+                                <br/>${loginIncorrect.value}
+                            </li>
+                        </c:forEach>
+                    </ul>
                     <br><a href="/productAll.do">all products page</a>
-                    </p>
+
         </c:if>
             <br/><br/><p align="center"><b>Please input login and password:</b></p>
             <form action="/userRegistration.do" method="post">
