@@ -1,8 +1,6 @@
 package net.evdokimov.eshop.entity;
 
-/**
- * Created by Nikita on 04.03.2015.
- */
+
 public class Product {
     private final int id;//нужен для связи с DB, пусть его выдает DB
     private String name;

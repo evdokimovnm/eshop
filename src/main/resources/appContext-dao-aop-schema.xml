@@ -3,12 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                http://www.springframework.org/schema/beans/spring-beans.xsd
                http://www.springframework.org/schema/context
                http://www.springframework.org/schema/context/spring-context.xsd
                http://www.springframework.org/schema/aop
-               http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+               http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
 
 
@@ -85,7 +86,11 @@
     <bean id="txManager" class="net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManagerImpl" scope="singleton">
         <property name="dataSource" ref="poolDataSource"/>
     </bean>
-
+    <!--Create new DB-->
+    <!--jdbc:initialize-database data-source="poolDataSource">
+        <jdbc:script location="classpath:db/myscl/initDB.sql"/>
+        <jdbc:script location="classpath:db/myscl/populateDB.sql"/>
+    </jdbc:initialize-database>-->
 
 </beans>
 

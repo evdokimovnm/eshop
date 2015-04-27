@@ -14,18 +14,13 @@ import java.util.List;
 
 public class ProductDaoJdbcExternalTxImpl implements ProductDao {
 
-    private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
-    /*private static final String DRIVER_CLASS_NAME = "org.hsqldb.jdbc.JDBCDriver";*/
-
     private static final String SELECT_ALL_SQL = "SELECT id, name, type_id FROM products";
     private static final String SELECT_BY_ID_SQL = "SELECT id, name, type_id FROM products WHERE id=";
     private static final String INSERT = "INSERT INTO products (name, type_id) VALUES (?, ?);";
     private static final String REMOVE = "DELETE FROM products WHERE id=";
     private static final String SELECT_BY_TYPE_ID_SQL = "SELECT * FROM products WHERE type_id=?";
 
-    static {
-        JdbcUtils.initDriver(DRIVER_CLASS_NAME);
-    }
+
 
     private DataSource dataSource;//для того чтобы получить именно ту connection
 

@@ -13,12 +13,6 @@ import java.util.List;
 
 public class ProductTypeDaoJdbcExternalTxImpl implements ProductTypeDao {
 
-    private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
-
-    static {
-        JdbcUtils.initDriver(DRIVER_CLASS_NAME);
-    }
-
     private DataSource dataSource;
 
     public void setDataSource(DataSource dataSource) {

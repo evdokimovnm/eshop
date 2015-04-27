@@ -12,22 +12,15 @@ import java.sql.*;
 
 public class UserDaoJdbcExternalTxImpl implements UserDao {
 
-    private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
-
     private static final String INSERT_SQL = "INSERT INTO users (login, password, email, role) VALUES (?, ?, ?, ?);";
     private static final String SELECT_BY_ID_AND_PASSWORD_SQL = "SELECT id, login, password, email, role FROM users WHERE login=? AND password=?;";
 
-
-    static {
-        JdbcUtils.initDriver(DRIVER_CLASS_NAME);
-    }
 
     private DataSource dataSource;//для того чтобы получить именно то connection
 
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
 
 
     @Override
