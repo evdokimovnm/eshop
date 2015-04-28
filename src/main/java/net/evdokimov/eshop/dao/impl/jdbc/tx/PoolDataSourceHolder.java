@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 
 public class PoolDataSourceHolder extends BaseDataSource {
-    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/eshop_db";
-    //private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/eshop";
+    //private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/eshop_db";
+    private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/eshop";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
 

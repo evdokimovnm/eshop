@@ -86,11 +86,12 @@
     <bean id="txManager" class="net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManagerImpl" scope="singleton">
         <property name="dataSource" ref="poolDataSource"/>
     </bean>
+
     <!--Create new DB-->
-    <!--jdbc:initialize-database data-source="poolDataSource">
+    <jdbc:initialize-database data-source="poolDataSource">
         <jdbc:script location="classpath:db/myscl/initDB.sql"/>
         <jdbc:script location="classpath:db/myscl/populateDB.sql"/>
-    </jdbc:initialize-database>-->
+    </jdbc:initialize-database>
 
 </beans>
 

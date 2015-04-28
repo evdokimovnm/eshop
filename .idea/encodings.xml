@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
-    <file url="file://$PROJECT_DIR$/src/main/resources/db/hsqldb/initDB.sql" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/db/hsqldb/populateDB.sql" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/db/myscl/hsqldb" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/db/myscl/initDB.sql" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/db/myscl/populateDB.sql" charset="UTF-8" />
   </component>

@@ -1,8 +1,6 @@
 package net.evdokimov.eshop.entity;
 
-/**
- * Created by 1 on 09.04.2015.
- */
+
 public class ProductType {
     private int id;
     private String type;
