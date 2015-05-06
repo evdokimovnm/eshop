@@ -17,14 +17,14 @@
                 <br><a href="/userLogout.do?ref=productAll.do">Logout</a>
             </c:if>
         </p>
-        <hr/>
-        <br/>
+        <hr>
+        <br>
         <%if (session.getAttribute("user") != null && ((User)session.getAttribute("user")).getRole().equals("manager")) { %>
         <h1 align="center">Manager version</h1>
         <%}%>
-        <br/><h2 align="center">ALL PRODUCTS PAGE</h2>
+        <br><h2 align="center">ALL PRODUCTS PAGE</h2>
 
-        <br/><b>Choose type of product for getting list with this type</b>
+        <br><b>Choose type of product for getting list with this type</b>
         <ul>
             <c:forEach var="productTypeList" items="${productTypeList}">
                 <li>
@@ -32,7 +32,8 @@
                 </li>
             </c:forEach>
         </ul>
-        <br/><h2>ALL PRODUCTS LIST</h2>
+        <br>
+        <h2>ALL PRODUCTS LIST</h2>
         <ul>
             <c:forEach var="productList" items="${productList}">
                 <li>
@@ -55,7 +56,7 @@
                         <option value="${productTypeList.type}">${productTypeList.type}</option>
                     </c:forEach>
                 </select>
-            <br/><input type="submit" value="Add">
+            <br><input type="submit" value="Add">
         </form>
         <%}%>
     </body>

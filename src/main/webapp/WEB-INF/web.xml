@@ -191,7 +191,7 @@
     </context-param>
 
     <session-config>
-        <session-timeout>240</session-timeout>
+        <session-timeout>15</session-timeout>
     </session-config>
 
     <welcome-file-list>

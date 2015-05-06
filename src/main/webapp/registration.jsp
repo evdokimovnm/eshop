@@ -4,7 +4,7 @@
     <body>
 
         <c:if test="${empty user}">
-            <br/><h2 align="center">Registration page</h2>
+            <br><h2 align="center">Registration page</h2>
                 <c:if test="${not empty loginOrEmailExist}">
                     <p align="center">
                         <br/>Such login or e-mail already exist, please input another!
@@ -21,9 +21,9 @@
                         </c:forEach>
                     </ul>
                     <br><a href="/productAll.do">all products page</a>
+                </c:if>
 
-        </c:if>
-            <br/><br/><p align="center"><b>Please input login and password:</b></p>
+            <br><br><p align="center"><b>Please input login and password:</b></p>
             <form action="/userRegistration.do" method="post">
                 <p align="center">
                     <br/>Username  :<input type="text" name="login" />
@@ -31,7 +31,7 @@
                     <br/>
                     <br/><b>Please input your E-mail:</b>
                     <br/>
-                    <br/>E-mail  :<input type="text" name="email" />
+                    <br/>E-mail  :<input type="text" name="email"/>
                     <br/><br/><input type="submit" value="Ok" />
                 </p>
             </form>
@@ -39,8 +39,8 @@
 
         <c:if test="${not empty user}">
             <p align="center">
-            <br/>Registration has been successful! Your login is ${user.login}
-            <br/> You may go to <a href="/productAll.do">ALL PRODUCTS PAGE</a>
+            <br>Registration has been successful! Your login is ${user.login}
+            <br> You may go to <a href="/productAll.do">ALL PRODUCTS PAGE</a>
             </p>
         </c:if>
 
