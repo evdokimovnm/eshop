@@ -8,7 +8,7 @@
         <br/>
         <br/>
         <h2 align="center">Please input login and password:</h2>
-            <form action="/userLogin.do?ref=<%=request.getParameter("ref")%>&id=<%=request.getParameter("id")%>" method="post">
+            <form action="/userLogin.do?ref=${param.get("ref")}&id=${param.get("id")}" method="post">
                 <p align="center">
                 <br/>Username  :<input type="text" name="login">
                 <br/>Password  :<input type="password" name="password">

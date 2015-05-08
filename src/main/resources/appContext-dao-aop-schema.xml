@@ -78,14 +78,13 @@
         <property name="minPasswordLength" value="${password.min}"/>
     </bean>
 
-
-    <!--PoolDataSourceHolder-->
-    <bean id="poolDataSource" class="net.evdokimov.eshop.dao.impl.jdbc.tx.PoolDataSourceHolder" scope="singleton"/>
-
     <!--Transaction Manager-->
     <bean id="txManager" class="net.evdokimov.eshop.dao.impl.jdbc.tx.TransactionManagerImpl" scope="singleton">
         <property name="dataSource" ref="poolDataSource"/>
     </bean>
+
+    <!--PoolDataSourceHolder-->
+    <bean id="poolDataSource" class="net.evdokimov.eshop.dao.impl.jdbc.tx.PoolDataSourceHolder" scope="singleton"/>
 
     <!--Create new DB-->
     <jdbc:initialize-database data-source="poolDataSource">

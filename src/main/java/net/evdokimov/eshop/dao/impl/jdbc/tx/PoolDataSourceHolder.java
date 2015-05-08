@@ -8,14 +8,20 @@ import java.sql.SQLException;
 
 
 public class PoolDataSourceHolder extends BaseDataSource {
-    //private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/eshop_db";
+    /*For mysql*/
     private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/eshop";
+    private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
+
+    /*For hsqldb*/
+    /*private static final String JDBC_URL = "jdbc:mysql://127.0.0.1:3306/eshop";
+    private static final String DRIVER_CLASS_NAME = "org.hsqldb.jdbc.JDBCDriver";*/
+
+
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
 
     private static final BoneCPDataSource dataSource;
-    private static final String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
-    /*private static final String DRIVER_CLASS_NAME = "org.hsqldb.jdbc.JDBCDriver";*/
+
 
     static {
         JdbcUtils.initDriver(DRIVER_CLASS_NAME);

@@ -6,9 +6,7 @@ import net.evdokimov.eshop.entity.Product;
 
 import java.util.List;
 
-/**
- * Created by Nikita on 04.03.2015.
- */
+
 public interface ProductDao {
 
     /**

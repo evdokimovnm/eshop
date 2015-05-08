@@ -1,4 +1,3 @@
-<%@ page import="net.evdokimov.eshop.entity.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
