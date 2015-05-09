@@ -1,4 +1,3 @@
-<%@ page import="net.evdokimov.eshop.entity.User" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
@@ -19,11 +18,10 @@
         </p>
         <hr>
         <br>
-        <%if (session.getAttribute("user") != null && ((User)session.getAttribute("user")).getRole().equals("manager")) { %>
-        <h1 align="center">Manager version</h1>
-        <%}%>
+        <c:if test="${user.role eq 'manager'}">
+            <h1 align="center">Manager version</h1>
+        </c:if>
         <br><h2 align="center">ALL PRODUCTS PAGE</h2>
-
         <br><b>Choose type of product for getting list with this type</b>
         <ul>
             <c:forEach var="productTypeList" items="${productTypeList}">
@@ -38,27 +36,26 @@
             <c:forEach var="productList" items="${productList}">
                 <li>
                     <a href="/product.do?id=${productList.id}">${productList.name}</a>
-                    <%if (session.getAttribute("user") != null && ((User)session.getAttribute("user")).getRole().equals("manager")) { %>
-                    <a href="/productRemove.do?id=${productList.id}"> X</a>
-                    <%}%>
+                    <c:if test="${user.role eq 'manager'}">
+                        <a href="/productRemove.do?id=${productList.id}"> X</a>
+                    </c:if>
                 </li>
             </c:forEach>
-        </ul>
+        </ul><br>
 
-
-        <%if (session.getAttribute("user") != null && ((User)session.getAttribute("user")).getRole().equals("manager")) { %>
-        <br/><b>Add new product:</b>
-        <form action="/productInsertNew.do" method="post">
-            <br/>Product name:<input type="text" name="productName">
-            <br/>Product type:
-                <select name="productType" size="1">
-                    <c:forEach var="productTypeList" items="${productTypeList}">
-                        <option value="${productTypeList.type}">${productTypeList.type}</option>
-                    </c:forEach>
-                </select>
-            <br><input type="submit" value="Add">
-        </form>
-        <%}%>
+        <c:if test="${user.role eq 'manager'}">
+            <b>Add new product:</b>
+            <form action="/productInsertNew.do" method="post">
+                <br/>Product name:<input type="text" name="productName">
+                <br/>Product type:
+                    <select name="productType" size="1">
+                        <c:forEach var="productTypeList" items="${productTypeList}">
+                            <option value="${productTypeList.type}">${productTypeList.type}</option>
+                        </c:forEach>
+                    </select>
+                <br><input type="submit" value="Add">
+            </form>
+        </c:if>
     </body>
 </html>
 

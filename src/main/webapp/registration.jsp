@@ -2,7 +2,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <body>
-
         <c:if test="${empty user}">
             <br><h2 align="center">Registration page</h2>
                 <c:if test="${not empty loginOrEmailExist}">

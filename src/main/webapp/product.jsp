@@ -19,8 +19,7 @@
         <br/>
         <br/><br/>
         <p align="center"> <b>PRODUCT PAGE</b>
-        <br>id: ${product.id} <%--EL=Expression Language--%><%--== request.getAttribute("product").getId()--%>
-       <%-- <br>id: <%=((Product)request.getAttribute("product")).getId()%>--%> <%--Scriplet--%>
+        <br>id: ${product.id}
         <br>name: ${product.name}
         <br><a href="/productAddToBucket.do?id=${product.id}">Add to bucket</a>
         </p>
