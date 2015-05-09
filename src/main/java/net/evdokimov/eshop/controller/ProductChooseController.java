@@ -18,7 +18,7 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/productChoose.do")
 public class ProductChooseController extends DependencyInjectionServlet {
-    public static final String PARAM_TYPE_ID = "type_id";
+    public static final String PARAM_TYPE_ID = "id";
     public static final String ATTRIBUTE_MODEL_TO_VIEW = "productList";
     public static final String PAGE_OK = "productsChosenList.jsp";
     public static final String PAGE_ERROR = "error.jsp";

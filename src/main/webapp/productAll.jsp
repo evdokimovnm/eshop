@@ -26,7 +26,7 @@
         <ul>
             <c:forEach var="productTypeList" items="${productTypeList}">
                 <li>
-                    <a href="/productChoose.do?type_id=${productTypeList.id}">${productTypeList.type}</a>
+                    <a href="/productChoose.do?id=${productTypeList.id}">${productTypeList.type}</a>
                 </li>
             </c:forEach>
         </ul>
