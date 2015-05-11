@@ -3,20 +3,13 @@
 <html>
     <head>
         <title>AllProductsPage</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
-        <p align="right">
-            <c:if test="${empty user}">
-                <br><a href="/login.jsp?ref=productAll.do">Login</a>
-                <br><a href="/registration.jsp">Registration</a>
-            </c:if>
-            <c:if test="${not empty user}">
-                <br/>You are ${user.login}!
-                <br><a href="/userLogout.do?ref=productAll.do">Logout</a>
-            </c:if>
-        </p>
-        <hr>
+        <jsp:include page="template/loginTemplate.jsp">
+            <jsp:param name="from" value="productAll.do"/>
+        </jsp:include>
         <br>
         <c:if test="${user.role eq 'manager'}">
             <h1 align="center">Manager version</h1>
