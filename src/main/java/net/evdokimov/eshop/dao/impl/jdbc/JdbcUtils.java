@@ -1,6 +1,6 @@
 package net.evdokimov.eshop.dao.impl.jdbc;
 
-import javax.activation.DataSource;
+
 import java.sql.*;
 
 

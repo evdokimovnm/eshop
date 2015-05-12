@@ -5,7 +5,6 @@
     <title>ChosenProductsPage</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
     <jsp:include page="template/loginTemplate.jsp">
         <jsp:param name="from" value="productChoose.do"/>

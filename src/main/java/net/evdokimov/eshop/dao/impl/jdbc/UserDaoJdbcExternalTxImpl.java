@@ -16,7 +16,7 @@ public class UserDaoJdbcExternalTxImpl implements UserDao {
     private static final String SELECT_BY_ID_AND_PASSWORD_SQL = "SELECT id, login, password, email, role FROM users WHERE login=? AND password=?;";
 
 
-    private DataSource dataSource;//для того чтобы получить именно то connection
+    private DataSource dataSource;//для того чтобы получить именно ту connection
 
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
